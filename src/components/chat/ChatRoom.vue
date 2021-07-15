@@ -12,12 +12,15 @@
             <div :class="{ 'd-flex flex-row-reverse': msg.me }" :key="i">
               <v-menu offset-y>
                 <template v-slot:activator="{ on }">
+                  <v-list-item-avatar v-if="!msg.me">
+                    <v-img :src="msg.avatar" />
+                  </v-list-item-avatar>
                   <v-hover v-slot:default="{ hover }">
                     <v-chip
                       :color="msg.me ? 'primary' : ''"
                       dark
                       style="height: auto; white-space: normal"
-                      class="pa-4 mb-2"
+                      class="pa-4 mt-2"
                       v-on="on"
                     >
                       {{ msg.content }}
@@ -131,42 +134,50 @@ export default {
       messages: [
         {
           content: "lorem ipsum",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
           me: true,
           created_at: "11:11am",
         },
         {
           content: "dolor",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
           me: false,
           created_at: "11:11am",
         },
         {
           content: "dolor",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
           me: false,
           created_at: "11:11am",
         },
         {
           content: "dolor",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
           me: false,
           created_at: "11:11am",
         },
         {
           content: "dolor",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
           me: true,
           created_at: "11:11am",
         },
         {
           content: "dolor",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
           me: false,
           created_at: "11:12am",
         },
         {
           content: "dolor",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
           me: false,
           created_at: "11:14am",
         },
       ],
       messageForm: {
         content: "",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         me: true,
         created_at: "11:11am",
       },
