@@ -20,7 +20,7 @@
                       :color="msg.me ? 'primary' : ''"
                       dark
                       style="height: auto; white-space: normal"
-                      class="pa-4 mt-2"
+                      class="pa-4 mt-2 mb-1"
                       v-on="on"
                     >
                       {{ msg.content }}
