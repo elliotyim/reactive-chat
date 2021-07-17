@@ -4,26 +4,26 @@
       <v-col cols="3" />
       <v-col cols="6">
         <v-card class="mx-auto">
-          <v-card-title>Sign In</v-card-title>
+          <v-card-title>Sign Up</v-card-title>
           <v-card-text>
+            <v-text-field type="text" label="Name" outlined />
             <v-text-field type="text" label="ID" outlined />
             <v-text-field
               type="password"
               label="Password"
               outlined
               hide-details
+              class="mb-2"
+            />
+            <v-text-field
+              type="password"
+              label="Confirm Password"
+              outlined
+              hide-details
             />
           </v-card-text>
           <v-card-text>
-            <v-btn color="black" dark block @click="signIn">Sign In</v-btn>
-          </v-card-text>
-
-          <div class="text-center">
-            <h3>OR</h3>
-          </div>
-
-          <v-card-text>
-            <v-btn outlined block @click="signUp">Sign Up</v-btn>
+            <v-btn color="black" dark block @click="signUp">Register</v-btn>
           </v-card-text>
         </v-card>
       </v-col>
@@ -34,16 +34,10 @@
 
 <script>
 export default {
-  name: "SignInView",
-  data() {
-    return {};
-  },
+  name: "SignUpView",
   methods: {
-    signIn() {
-      this.$router.push("/chat");
-    },
     signUp() {
-      this.$router.push("/signup");
+      this.$router.push("/signIn");
     },
   },
 };
