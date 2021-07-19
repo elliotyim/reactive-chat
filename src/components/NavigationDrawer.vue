@@ -2,7 +2,7 @@
   <v-card>
     <v-navigation-drawer mini-variant app permanent>
       <v-list-item class="px-2">
-        <v-list-item-avatar>
+        <v-list-item-avatar @click="navigate(`/profile`)" id="profile-img">
           <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
         </v-list-item-avatar>
       </v-list-item>
@@ -16,7 +16,7 @@
           active-class="black--text"
         >
           <v-list-item v-for="(item, i) in items" :key="i">
-            <v-list-item-icon>
+            <v-list-item-icon @click="navigate(item.path)">
               <v-icon v-text="item.icon"></v-icon>
             </v-list-item-icon>
             <v-list-item-content>
@@ -35,13 +35,19 @@ export default {
   data() {
     return {
       selected: null,
-      items: [{ title: "Chat", icon: "mdi-message-text" }],
+      items: [{ title: "Chat", icon: "mdi-message-text", path: "/chat" }],
     };
   },
-  watch: {
-    selected(val) {
-      if (val === 0) this.$router.push("/chat");
+  methods: {
+    navigate(path) {
+      this.$router.push(path);
     },
   },
 };
 </script>
+
+<style scoped>
+#profile-img {
+  cursor: pointer;
+}
+</style>
