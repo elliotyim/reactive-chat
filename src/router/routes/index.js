@@ -1,7 +1,8 @@
-import SignUpView from "../../views/SignUpView.vue";
-import SignInView from "../../views/SignInView.vue";
-import MainView from "../../views/MainView.vue";
-import ChatView from "../../views/ChatView.vue";
+import SignUpView from "@/views/SignUpView.vue";
+import SignInView from "@/views/SignInView.vue";
+import MainView from "@/views/MainView.vue";
+import ChatView from "@/views/ChatView.vue";
+import ProfileView from "@/views/ProfileView.vue";
 
 const routes = [
   {
@@ -20,6 +21,10 @@ const routes = [
       {
         path: "/chat",
         component: ChatView,
+      },
+      {
+        path: "/profile",
+        component: ProfileView,
       },
     ],
   },
