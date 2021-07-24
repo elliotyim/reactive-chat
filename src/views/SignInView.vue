@@ -6,12 +6,28 @@
         <v-card class="mx-auto">
           <v-card-title>Sign In</v-card-title>
           <v-card-text>
-            <v-text-field type="text" label="ID" outlined />
+            <v-text-field
+              type="email"
+              label="Email"
+              v-model="email"
+              @keydown.enter="signIn"
+              outlined
+            />
             <v-text-field
               type="password"
               label="Password"
+              class="mb-2"
+              v-model="password1"
+              @keydown.enter="signIn"
               outlined
               hide-details
+            />
+            <v-text-field
+              type="password"
+              label="Confirm Password"
+              v-model="password2"
+              @keydown.enter="signIn"
+              outlined
             />
           </v-card-text>
           <v-card-text>
@@ -33,14 +49,58 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "SignInView",
   data() {
-    return {};
+    return {
+      email: null,
+      password1: null,
+      password2: null,
+    };
   },
   methods: {
-    signIn() {
-      this.$router.push("/chat");
+    ...mapActions(["signInWithEmail"]),
+    validateEmail(email) {
+      const re = /\S+@\S+\.\S+/;
+      const isValidEmail = re.test(String(email).toLowerCase());
+
+      if (!isValidEmail) return "Invalid Email!";
+      else if (email.length > 50) return "Too long email!";
+      else return "success";
+    },
+    validatePassword(pw1, pw2) {
+      if (!pw1 || !pw2) return "Input passwords!";
+      else if (pw1.length < 8 || pw2.length < 8) return "Too short passwords!";
+      else if (pw1.length > 50 || pw2.length > 50) return "Too long passwords!";
+      else if (pw1 != pw2) return "Different passwords provided!";
+      else return "success";
+    },
+    async signIn() {
+      let message = this.validateEmail(this.email);
+      if (message != "success") {
+        alert(message);
+        return;
+      }
+
+      message = this.validatePassword(this.password1, this.password2);
+      if (message != "success") {
+        alert(message);
+        return;
+      }
+
+      const payload = {
+        email: this.email,
+        password: this.password1,
+      };
+
+      try {
+        const signedInUser = await this.signInWithEmail(payload);
+        alert(`Welcome ${signedInUser.name}!`);
+        this.$router.push("/chat");
+      } catch (e) {
+        alert(e.message);
+      }
     },
     signUp() {
       this.$router.push("/signup");

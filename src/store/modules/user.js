@@ -17,5 +17,19 @@ export default {
         else throw new Error(e.message);
       }
     },
+    async signInWithEmail(context, payload) {
+      try {
+        const response = await http.request({
+          url: "/users/signin",
+          method: "POST",
+          data: payload,
+          withCredentials: true,
+        });
+        return response.data;
+      } catch (e) {
+        if (e.response) throw new Error(e.response.data.message);
+        else throw new Error(e.message);
+      }
+    },
   },
 };
