@@ -1,3 +1,4 @@
+import LandingView from "@/views/LandingView.vue";
 import SignUpView from "@/views/SignUpView.vue";
 import SignInView from "@/views/SignInView.vue";
 import MainView from "@/views/MainView.vue";
@@ -6,10 +7,17 @@ import ProfileView from "@/views/ProfileView.vue";
 
 const routes = [
   {
+    name: "LandingView",
+    path: "/",
+    component: LandingView,
+  },
+  {
+    name: "SignInView",
     path: "/signin",
     component: SignInView,
   },
   {
+    name: "signUpView",
     path: "/signup",
     component: SignUpView,
   },
@@ -19,10 +27,12 @@ const routes = [
     component: MainView,
     children: [
       {
+        name: "ChatView",
         path: "/chat",
         component: ChatView,
       },
       {
+        name: "ProfileView",
         path: "/profile",
         component: ProfileView,
       },
