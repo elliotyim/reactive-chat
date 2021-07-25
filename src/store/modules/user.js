@@ -34,7 +34,7 @@ export default {
     async signUp(context, payload) {
       try {
         const response = await http.request({
-          url: "/users",
+          url: "/users/signup",
           method: "POST",
           data: payload,
         });
