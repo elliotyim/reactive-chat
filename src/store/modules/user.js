@@ -58,5 +58,13 @@ export default {
         else throw new Error(e.message);
       }
     },
+    async signOut(context) {
+      const response = await http.request({
+        url: "/users/signout",
+        method: "POST",
+      });
+      context.commit("setSignedInUser", null);
+      return response.data;
+    },
   },
 };
