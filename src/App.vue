@@ -4,7 +4,7 @@
     <NavigationDrawer v-if="signedInUser" />
 
     <v-main>
-      <v-container class="" fluid>
+      <v-container fill-height fluid class="pa-0">
         <router-view />
       </v-container>
     </v-main>

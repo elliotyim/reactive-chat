@@ -1,6 +1,5 @@
 import LandingView from "@/views/LandingView.vue";
 import SignUpView from "@/views/SignUpView.vue";
-import SignInView from "@/views/SignInView.vue";
 import MainView from "@/views/MainView.vue";
 import ChatView from "@/views/ChatView.vue";
 import ProfileView from "@/views/ProfileView.vue";
@@ -10,11 +9,6 @@ const routes = [
     name: "LandingView",
     path: "/",
     component: LandingView,
-  },
-  {
-    name: "SignInView",
-    path: "/signin",
-    component: SignInView,
   },
   {
     name: "signUpView",

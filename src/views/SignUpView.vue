@@ -110,7 +110,7 @@ export default {
       try {
         await this.signUp(payload);
         alert("User registered successfully!");
-        this.$router.push("/signIn");
+        this.$router.push("/");
       } catch (e) {
         alert(e);
       }

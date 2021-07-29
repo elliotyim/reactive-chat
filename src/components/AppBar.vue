@@ -18,7 +18,7 @@ export default {
     ...mapActions(["signOut"]),
     async close() {
       await this.signOut();
-      this.$router.push("/signin");
+      this.$router.push("/");
     },
   },
 };

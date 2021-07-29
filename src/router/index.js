@@ -20,10 +20,10 @@ router.beforeEach(async (to, from, next) => {
   try {
     await store.dispatch("checkIfSignedIn");
   } catch (e) {
-    console.log(e);
+    console.log(e.message);
   }
 
-  const authPages = ["/signin", "/signup"];
+  const authPages = ["/signup"];
   const publicPages = [...authPages];
 
   const isPublic =
@@ -35,8 +35,8 @@ router.beforeEach(async (to, from, next) => {
 
   if (!isPublic && !signedInUser) {
     alert("Sign in first!");
-    return next("/signin");
-  } else if (isAuthPage && signedInUser) {
+    return next("/");
+  } else if ((isAuthPage || to.path === "/") && signedInUser) {
     return next("/chat");
   } else {
     return next();
