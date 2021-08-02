@@ -14,8 +14,12 @@
         mandatory
         active-class="black--text"
       >
-        <v-list-item v-for="(item, i) in items" :key="i">
-          <v-list-item-icon @click="navigate(item.path)">
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+          @click="navigate(item.path)"
+        >
+          <v-list-item-icon>
             <v-icon v-text="item.icon"></v-icon>
           </v-list-item-icon>
           <v-list-item-content>
