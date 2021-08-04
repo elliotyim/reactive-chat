@@ -17,6 +17,8 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
+  if (to.path === "/") return next();
+
   try {
     await store.dispatch("checkIfSignedIn");
   } catch (e) {

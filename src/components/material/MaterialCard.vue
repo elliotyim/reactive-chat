@@ -3,7 +3,7 @@
     <div class="d-flex grow flex-wrap">
       <v-avatar
         v-if="avatar"
-        size="128"
+        size="192"
         class="mx-auto v-card--material__avatar elevation-6"
         color="grey"
       >
@@ -109,7 +109,7 @@ export default {
 .v-card--material
   &__avatar
     position: relative
-    top: -64px
+    top: -96px
     margin-bottom: -32px
 
   &__heading

@@ -50,6 +50,9 @@
 
 <script>
 import { mapActions } from "vuex";
+
+import { validateEmail, validatePassword } from "@/utils/validator";
+
 export default {
   name: "LandingView",
   data() {
@@ -61,28 +64,14 @@ export default {
   },
   methods: {
     ...mapActions(["signInWithEmail"]),
-    validateEmail(email) {
-      const re = /\S+@\S+\.\S+/;
-      const isValidEmail = re.test(String(email).toLowerCase());
-
-      if (!isValidEmail) return "Invalid Email!";
-      else if (email.length > 50) return "Too long email!";
-      else return "success";
-    },
-    validatePassword(pw1, pw2) {
-      if (!pw1 || !pw2) return "Input passwords!";
-      else if (pw1.length > 50 || pw2.length > 50) return "Too long passwords!";
-      else if (pw1 != pw2) return "Different passwords provided!";
-      else return "success";
-    },
     async signIn() {
-      let message = this.validateEmail(this.email);
+      let message = validateEmail(this.email);
       if (message != "success") {
         alert(message);
         return;
       }
 
-      message = this.validatePassword(this.password1, this.password2);
+      message = validatePassword(this.password1, this.password2);
       if (message != "success") {
         alert(message);
         return;

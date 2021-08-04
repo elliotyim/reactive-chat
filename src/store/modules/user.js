@@ -58,6 +58,19 @@ export default {
         else throw new Error(e.message);
       }
     },
+    async modifyUserInfo(context, payload) {
+      try {
+        const response = await http.request({
+          url: "/users/profile",
+          method: "PUT",
+          data: payload,
+        });
+        return response.data;
+      } catch (e) {
+        if (e.response) throw new Error(e.response.data.message);
+        else throw new Error(e.message);
+      }
+    },
     async signOut(context) {
       const response = await http.request({
         url: "/users/signout",

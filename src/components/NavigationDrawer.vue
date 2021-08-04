@@ -2,7 +2,7 @@
   <v-navigation-drawer mini-variant app permanent>
     <v-list-item class="px-2">
       <v-list-item-avatar @click="navigate(`/profile`)" id="profile-img">
-        <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
+        <v-img :src="profileImg"></v-img>
       </v-list-item-avatar>
     </v-list-item>
 
@@ -14,8 +14,12 @@
         mandatory
         active-class="black--text"
       >
-        <v-list-item v-for="(item, i) in items" :key="i">
-          <v-list-item-icon @click="navigate(item.path)">
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+          @click="navigate(item.path)"
+        >
+          <v-list-item-icon>
             <v-icon v-text="item.icon"></v-icon>
           </v-list-item-icon>
           <v-list-item-content>
@@ -28,6 +32,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "NavigationDrawer",
   data() {
@@ -35,6 +41,14 @@ export default {
       selected: null,
       items: [{ title: "Chat", icon: "mdi-message-text", path: "/chat" }],
     };
+  },
+  computed: {
+    ...mapGetters(["signedInUser"]),
+    profileImg() {
+      return this.signedInUser?.profileImg !== null
+        ? this.signedInUser?.profileImg
+        : require("@/assets/avatar-url-default.png");
+    },
   },
   methods: {
     navigate(path) {
