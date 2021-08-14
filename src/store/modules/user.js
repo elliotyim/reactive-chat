@@ -13,8 +13,8 @@ export default {
     },
   },
   actions: {
-    async checkIfSignedIn(context) {
-      if (context.getters.signedInUser) return;
+    async fetchSignedInUser(context, once) {
+      if (once && context.getters.signedInUser) return;
 
       try {
         const response = await http.request({

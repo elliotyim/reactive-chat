@@ -20,7 +20,7 @@ router.beforeEach(async (to, from, next) => {
   if (to.path === "/") return next();
 
   try {
-    await store.dispatch("checkIfSignedIn");
+    await store.dispatch("fetchSignedInUser", "once");
   } catch (e) {
     console.log(e.message);
   }
